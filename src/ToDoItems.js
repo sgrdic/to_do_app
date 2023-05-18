@@ -4,7 +4,10 @@ function ToDoItems({items}) {
     <ul>
       {
         items.map((item) => (
-          <li>{item.text}</li>
+          <li>
+            <input type="checkbox" name="checkbox" checked={item.isCompleted}></input>
+            {item.text}
+          </li>
         ))
       }
     </ul>

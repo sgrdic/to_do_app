@@ -15,7 +15,7 @@ function HighLevelContainer (props) {
       {
         id:2,
         text:'Operi ves',
-        isCompleted: false,
+        isCompleted: true,
       }
     ])
   }, [])
