@@ -19,11 +19,18 @@ function HighLevelContainer (props) {
       }
     ])
   }, [])
+
+  const addItem = (text) => {
+    setToDoItems((prev) => {
+      return [...prev, {id: 3, text, isCompleted: false }]
+    })
+  };
+
   return (
     <>
       <div><SearchBar/></div>
       <div><ToDoItems items={toDoItems}/></div>
-      <div><AddItemForm/></div>
+      <div><AddItemForm addItem={addItem} /></div>
     </>
   )
 };
