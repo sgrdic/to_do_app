@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 function HighLevelContainer (props) {
   const [toDoItems, setToDoItems] = useState([]);
+  const [searchText, setSearchText] = useState('')
+  
   useEffect(() => {
     setToDoItems([
       {
@@ -20,16 +22,27 @@ function HighLevelContainer (props) {
     ])
   }, [])
 
+  const handleUserInput = e => {
+    setSearchText (e.target.value)
+    
+  }
+
   const addItem = (text) => {
     setToDoItems((prev) => {
       return [...prev, {id: 3, text, isCompleted: false }]
     })
   };
 
+  const filteredToDoItems = () => {
+    return toDoItems.filter(toDoItem => {
+      return toDoItem.text.startsWith(searchText)
+    })
+  };
+
   return (
     <>
-      <div><SearchBar/></div>
-      <div><ToDoItems items={toDoItems}/></div>
+      <div><SearchBar input={searchText} userInput={handleUserInput}/></div>
+      <div><ToDoItems items={filteredToDoItems()}/></div>
       <div><AddItemForm addItem={addItem} /></div>
     </>
   )
