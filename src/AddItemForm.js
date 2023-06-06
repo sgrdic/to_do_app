@@ -9,8 +9,11 @@ function AddItemForm(props) {
   
   return (
     <>
-      <input type="text" onKeyUp={handleSetText}></input>
-      <button onClick={() => props.addItem(text)}>Add</button>
+      <input value={text} type="text" onChange={handleSetText}></input>
+      <button onClick={() => {
+        props.addItem(text);
+        setText('')
+      }}>Add</button>
     </>
   )
 } ;

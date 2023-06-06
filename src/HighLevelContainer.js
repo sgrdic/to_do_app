@@ -10,17 +10,30 @@ function HighLevelContainer (props) {
   useEffect(() => {
     setToDoItems([
       {
-        id:1,
+        id:2,
         text:'Operi sude',
         isCompleted: false,
       },
       {
-        id:2,
+        id:1,
         text:'Operi ves',
         isCompleted: true,
       }
     ])
   }, [])
+
+  const toggleCompleted = (idOfElementClicked) => {
+    setToDoItems((previous) => {
+      return previous.map((elem) => {
+        if(elem.id === idOfElementClicked) {
+          return {...elem, isCompleted: !elem.isCompleted}
+        } else {
+          return elem
+        }
+        
+      })
+    })
+  };
 
   const handleUserInput = e => {
     setSearchText (e.target.value)
@@ -29,7 +42,7 @@ function HighLevelContainer (props) {
 
   const addItem = (text) => {
     setToDoItems((prev) => {
-      return [...prev, {id: 3, text, isCompleted: false }]
+      return [...prev, {id: nextId(), text, isCompleted: false }]
     })
   };
 
@@ -39,10 +52,21 @@ function HighLevelContainer (props) {
     })
   };
 
+  
+  const nextId = () => {
+    let biggestId= 0;
+    toDoItems.forEach((item) => {
+      if (item.id > biggestId) {
+        biggestId=item.id
+      }
+    });
+    return biggestId+1
+  }
+
   return (
     <>
       <div><SearchBar input={searchText} userInput={handleUserInput}/></div>
-      <div><ToDoItems items={filteredToDoItems()}/></div>
+      <div><ToDoItems toggleCompleted={toggleCompleted} items={filteredToDoItems()}/></div>
       <div><AddItemForm addItem={addItem} /></div>
     </>
   )
