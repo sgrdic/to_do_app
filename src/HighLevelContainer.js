@@ -1,3 +1,5 @@
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import SearchBar from "./SearchBar";
 import ToDoItems from "./ToDoItems";
 import AddItemForm from "./AddItemForm";
@@ -64,11 +66,11 @@ function HighLevelContainer (props) {
   }
 
   return (
-    <>
-      <div><SearchBar input={searchText} userInput={handleUserInput}/></div>
-      <div><ToDoItems toggleCompleted={toggleCompleted} items={filteredToDoItems()}/></div>
-      <div><AddItemForm addItem={addItem} /></div>
-    </>
+    <Container>
+      <Row className='mb-4'><SearchBar input={searchText} userInput={handleUserInput}/></Row>
+      <Row><ToDoItems toggleCompleted={toggleCompleted} items={filteredToDoItems()}/></Row>
+      <Row className='mt-4'><AddItemForm addItem={addItem} /></Row>
+    </Container>
   )
 };
 

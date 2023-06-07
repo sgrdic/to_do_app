@@ -1,4 +1,9 @@
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+
+
 
 function AddItemForm(props) {
   const [text, setText] = useState("");
@@ -9,11 +14,16 @@ function AddItemForm(props) {
   
   return (
     <>
-      <input value={text} type="text" onChange={handleSetText}></input>
-      <button onClick={() => {
-        props.addItem(text);
-        setText('')
-      }}>Add</button>
+      <Col className='pl-0' xs={8}>
+        <Form.Control className='' value={text} onChange={handleSetText} type="text" placeholder="Add item here" />
+      </Col>
+        
+      <Col xs={4}>
+        <Button className='m-0 floatRight fullWidth' onClick={() => {
+          props.addItem(text);
+          setText('')
+        }} variant="primary">Add</Button>
+      </Col>
     </>
   )
 } ;

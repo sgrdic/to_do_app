@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.fullWidth {
+  width:100%;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.floatRight {
+  float:right;
 }
