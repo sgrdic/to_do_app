@@ -19,7 +19,7 @@ function AddItemForm(props) {
       </Col>
         
       <Col xs={4}>
-        <Button className='m-0 floatRight fullWidth' onClick={() => {
+        <Button disabled={text.length===0} className='m-0 floatRight fullWidth' onClick={() => {
           props.addItem(text);
           setText('')
         }} variant="primary">Add</Button>

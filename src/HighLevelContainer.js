@@ -9,20 +9,20 @@ function HighLevelContainer (props) {
   const [toDoItems, setToDoItems] = useState([]);
   const [searchText, setSearchText] = useState('')
   
-  useEffect(() => {
-    setToDoItems([
-      {
-        id:2,
-        text:'Operi sude',
-        isCompleted: false,
-      },
-      {
-        id:1,
-        text:'Operi ves',
-        isCompleted: true,
-      }
-    ])
-  }, [])
+  // useEffect(() => {
+  //   setToDoItems([
+  //     {
+  //       id:2,
+  //       text:'Operi sude',
+  //       isCompleted: false,
+  //     },
+  //     {
+  //       id:1,
+  //       text:'Operi ves',
+  //       isCompleted: true,
+  //     }
+  //   ])
+  // }, [])
 
   const toggleCompleted = (idOfElementClicked) => {
     setToDoItems((previous) => {
@@ -50,7 +50,7 @@ function HighLevelContainer (props) {
 
   const filteredToDoItems = () => {
     return toDoItems.filter(toDoItem => {
-      return toDoItem.text.startsWith(searchText)
+      return toDoItem.text.toUpperCase().startsWith(searchText.toUpperCase())
     })
   };
 
@@ -68,7 +68,9 @@ function HighLevelContainer (props) {
   return (
     <Container>
       <Row className='mb-4'><SearchBar input={searchText} userInput={handleUserInput}/></Row>
-      <Row><ToDoItems toggleCompleted={toggleCompleted} items={filteredToDoItems()}/></Row>
+      <Row>
+        {toDoItems.length > 0 ? <ToDoItems toggleCompleted={toggleCompleted} items={filteredToDoItems()}/> : <p>Add your first item</p>}
+      </Row>
       <Row className='mt-4'><AddItemForm addItem={addItem} /></Row>
     </Container>
   )
